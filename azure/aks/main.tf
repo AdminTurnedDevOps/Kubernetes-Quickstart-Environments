@@ -31,9 +31,3 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
     Environment = "Production"
   }
 }
-
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.k8squickstart.kube_config_raw
-
-  sensitive = true
-}
