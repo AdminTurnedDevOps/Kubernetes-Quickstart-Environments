@@ -3,7 +3,7 @@ provider "google" {
   region      = var.region
 }
 resource "google_container_cluster" "primary" {
-  name     = var.project_id
+  name     = var.cluster_name
   location = var.region
   
   remove_default_node_pool = true

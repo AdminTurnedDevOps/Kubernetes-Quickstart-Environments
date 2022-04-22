@@ -22,3 +22,8 @@ variable "node_count" {
   type = string
   default = 2
 }
+
+variable "cluster_name" {
+  type = string
+  default = "gkek8senv"
+}
