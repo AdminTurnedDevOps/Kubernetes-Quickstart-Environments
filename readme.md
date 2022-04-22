@@ -18,4 +18,4 @@ Take a look at the code in this repo!
 
 Contributors names and contact info
 
-ex. [@TheNJDevOpsGuy](https://twitter.com/thenjdevopsguy)
+[@TheNJDevOpsGuy](https://twitter.com/thenjdevopsguy)
