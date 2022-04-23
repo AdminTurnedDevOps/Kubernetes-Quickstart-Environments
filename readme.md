@@ -2,6 +2,8 @@
 
 Code to create and clean up Kubernetes environments in the cloud and on-prem.
 
+![](images/k8s.png)
+
 ## Description
 
 If you need to create Kubernetes environments for:
