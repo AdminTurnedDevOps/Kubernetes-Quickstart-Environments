@@ -12,9 +12,24 @@ provider "metal" {
 }
 
 resource "metal_device" "k8sservers" {
-  count = 5
+  count = 2
   project_id = var.project_id
-  hostname = "${var.hostname}-${count.index}"
+  hostname = "${var.hostname}-controlplane-${count.index}"
+  operating_system = var.OS
+  plan             = var.server_size
+  facilities       = [var.datacenter]
+  billing_cycle    = "hourly"
+
+  ip_address {
+    type = "private_ipv4"
+    cidr = 30
+  }
+}
+
+resource "metal_device" "k8sservers-workernodes" {
+  count = 3
+  project_id = var.project_id
+  hostname = "${var.hostname}-worker-${count.index}"
   operating_system = var.OS
   plan             = var.server_size
   facilities       = [var.datacenter]
