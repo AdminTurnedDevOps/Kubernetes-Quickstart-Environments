@@ -11,7 +11,7 @@ provider "metal" {
   auth_token = var.token
 }
 
-resource "metal_device" "k8sservers" {
+resource "metal_device" "k8sservers-controlplane" {
   count = 2
   project_id = var.project_id
   hostname = "${var.hostname}-controlplane-${count.index}"
@@ -26,7 +26,7 @@ resource "metal_device" "k8sservers" {
   }
 }
 
-resource "metal_device" "k8sservers-workernodes" {
+resource "metal_device" "k8sservers-workernode" {
   count = 3
   project_id = var.project_id
   hostname = "${var.hostname}-worker-${count.index}"
