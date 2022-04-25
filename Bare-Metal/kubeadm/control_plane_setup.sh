@@ -1,12 +1,17 @@
 # Define variables for the `kubeadm init` command. Examples below.
-ip_address=10.66.89.134
+user=k8stest
+pass='Password12!@'
+sudo useradd -m -d /home/$user $user
+echo "$user:$pass" | chpasswd
+usermod -aG sudo $user
+
+ip_address=10.66.89.130
 cidr=10.66.0.0/16
-publicIP=136.144.59.119
+publicIP=136.144.59.203
 
 kubeadm init --control-plane-endpoint $publicIP --apiserver-advertise-address $ip_address --pod-network-cidr=$cidr --upload-certs
 
 # To start using your Kubernetes cluster, you need to configure your home user settings
-user=root
 sudo su $user
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
