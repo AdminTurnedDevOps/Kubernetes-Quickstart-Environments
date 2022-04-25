@@ -1,12 +1,12 @@
 # Define variables for the `kubeadm init` command. Examples below.
-ip_address=172.18.0.4
-cidr=172.18.0.0/16
-publicIP=20.232.11.27
+ip_address=10.66.89.134
+cidr=10.66.0.0/16
+publicIP=136.144.59.119
 
 kubeadm init --control-plane-endpoint $publicIP --apiserver-advertise-address $ip_address --pod-network-cidr=$cidr --upload-certs
 
 # To start using your Kubernetes cluster, you need to configure your home user settings
-user=mike
+user=root
 sudo su $user
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config

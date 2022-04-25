@@ -63,3 +63,19 @@ resource "metal_device" "k8sservers-workernode" {
     cidr = 30
   }
 }
+
+output "publicIP1" {
+  value = metal_device.k8sservers-controlplane[0].access_public_ipv4
+}
+
+output "publicIP2" {
+  value = metal_device.k8sservers-controlplane[1].access_public_ipv4
+}
+
+output "privateIP1" {
+  value = metal_device.k8sservers-controlplane[0].access_private_ipv4
+}
+
+output "privateIP2" {
+  value = metal_device.k8sservers-controlplane[1].access_private_ipv4
+}
