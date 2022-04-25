@@ -24,9 +24,18 @@ Scripts are written in Bash and Go
 * Terraform
 * A Code editor like VS Code
 
-## Instructions
+## Environments
 1. Bare Metal
-   [Equinix]() and [Kubeadm]()
+    - [Equinix](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Bare-Metal/EquinixMetal) and [Kubeadm](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/blob/main/Bare-Metal/kubeadm/instructions_for_kubeadm/kubeadm_on_equinix/read.md)
+
+2. GCP
+    - [GKE] (https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/GKE)
+    - [Anthos Bare Metal](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/anthos-bare-metal)
+    - [Anthos In The Cloud](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/anthos-in-the-cloud)
+3. Azure
+    - [AKS](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/azure/aks)
+4. AWS
+    - [EKS](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/aws/eks)
 ## Authors
 
 Contributors names and contact info
