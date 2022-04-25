@@ -4,7 +4,7 @@
    - privateIP2
    - publicIP1
    - publicIP2
-3. SSH into `publicIP`
+3. SSH into `publicIP1`
 4. Take note of `publicIP1` and `privateIP1`
 5. Open up the `control_plane_setup.sh` script in the `kubeadm` directory
 
