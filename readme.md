@@ -23,6 +23,10 @@ Scripts are written in Bash and Go
 
 * Terraform
 * A Code editor like VS Code
+
+## Instructions
+1. Bare Metal
+   [Equinix]() and [Kubeadm]()
 ## Authors
 
 Contributors names and contact info
