@@ -29,7 +29,7 @@ Scripts are written in Bash and Go
     - [Equinix](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Bare-Metal/EquinixMetal) and [Kubeadm](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/blob/main/Bare-Metal/kubeadm/instructions_for_kubeadm/kubeadm_on_equinix/read.md)
 
 2. GCP
-    - [GKE] (https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/GKE)
+    - [GKE](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/GKE)
     - [Anthos Bare Metal](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/anthos-bare-metal)
     - [Anthos In The Cloud](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/anthos-in-the-cloud)
 3. Azure
