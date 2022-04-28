@@ -34,6 +34,7 @@ Scripts are written in Bash and Go
     - [Anthos In The Cloud](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/Google/anthos-in-the-cloud)
 3. Azure
     - [AKS](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/azure/aks)
+    - [AKS With Virtual Kubelet For ACI](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/azure/aks-with-virtual-kubelet)
 4. AWS
     - [EKS](https://github.com/AdminTurnedDevOps/Kubernetes-Quickstart-Environments/tree/main/aws/eks)
 ## Authors
