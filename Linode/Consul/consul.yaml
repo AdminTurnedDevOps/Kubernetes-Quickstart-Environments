@@ -1,0 +1,16 @@
+global:
+  name: consul
+  datacenter: njtest
+server:
+  replicas: 2
+  securityContext:
+    runAsNonRoot: false
+    runAsUser: 0
+ui:
+  enabled: true
+connectInject:
+  enabled: true
+  default: true
+controller:
+  enabled: true
+    
