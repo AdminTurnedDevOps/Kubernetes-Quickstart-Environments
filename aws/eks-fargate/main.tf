@@ -83,6 +83,11 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy-fargate" {
   role       = aws_iam_role.eks-fargate.name
 }
 
+resource "aws_iam_role_policy_attachment" "CloudWatchAgentServerPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  role       = aws_iam_role.eks-fargate.name
+}
+
 resource "aws_eks_fargate_profile" "k8senv-eks-serverless" {
   cluster_name           = aws_eks_cluster.k8senv-eks.name
   fargate_profile_name   = "k8senv-serverless-eks"
