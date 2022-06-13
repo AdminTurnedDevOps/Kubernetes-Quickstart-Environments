@@ -1,4 +1,4 @@
-ClusterName=k8senv-cluster
+ClusterName=k8squickstart-cluster
 RegionName=us-east-1
 FluentBitHttpPort='2020'
 FluentBitReadFromHead='Off'

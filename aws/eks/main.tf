@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "terraform-state-k8squickstart"
+    bucket = "terraform-state-k8senv"
     key    = "eks-terraform-workernodes.tfstate"
     region = "us-east-1"
   }
@@ -92,6 +92,11 @@ resource "aws_iam_role_policy_attachment" "EC2InstanceProfileForImageBuilderECRC
 
 resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  role       = aws_iam_role.workernodes.name
+}
+
+resource "aws_iam_role_policy_attachment" "CloudWatchAgentServerPolicy-eks" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   role       = aws_iam_role.workernodes.name
 }
 

@@ -41,6 +41,11 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
   role       = aws_iam_role.eks-iam-role.name
 }
 
+resource "aws_iam_role_policy_attachment" "CloudWatchAgentServerPolicy-eks" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  role       = aws_iam_role.eks-iam-role.name
+}
+
 ## Create the EKS cluster
 resource "aws_eks_cluster" "k8senv-eks" {
   name = "k8senv-cluster"
