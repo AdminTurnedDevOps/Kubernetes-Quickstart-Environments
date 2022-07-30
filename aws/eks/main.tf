@@ -110,9 +110,9 @@ resource "aws_eks_node_group" "worker-node-group" {
   instance_types = ["t3.xlarge"]
 
   scaling_config {
-    desired_size = 3
+    desired_size = var.desired_size
     max_size     = 4
-    min_size     = 2
+    min_size     = var.min_size
   }
 
   depends_on = [
