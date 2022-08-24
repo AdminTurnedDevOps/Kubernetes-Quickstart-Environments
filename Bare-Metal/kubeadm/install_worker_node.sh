@@ -9,6 +9,8 @@ echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt
 
 sudo apt update -y
 
+sudo su -
+
 # Install and configure the CRI-O container runtime
 sudo -i
 OS=xUbuntu_20.04
