@@ -8,6 +8,8 @@ sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
+sudo su -
+
 sudo apt update -y 
 
 # Install and configure the CRI-O container runtime
