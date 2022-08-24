@@ -12,7 +12,6 @@ sudo apt update -y
 sudo su -
 
 # Install and configure the CRI-O container runtime
-sudo -i
 OS=xUbuntu_20.04
 VERSION=1.22
 
