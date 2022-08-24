@@ -12,7 +12,7 @@ publicIP=136.144.59.203
 kubeadm init --control-plane-endpoint $publicIP --apiserver-advertise-address $ip_address --pod-network-cidr=$cidr --upload-certs
 
 # To start using your Kubernetes cluster, you need to configure your home user settings
-sudo su $user
+su -l k8stest
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
