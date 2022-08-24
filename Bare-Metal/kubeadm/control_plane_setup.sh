@@ -15,9 +15,9 @@ Depending on where you are deploying, you could either have just a public subnet
 If you have just a public subnet, use the same value for the ip_address and publicIP, along with the CIDR range
 If you have a private and public subnet, use the public IP for the publicIP, the private IP for the ip_address, and the private IP range for the CIDR
 #######
-ip_address=172.18.0.7
+ip_address=172.18.0.4
 cidr=172.18.0.0/16
-publicIP=52.152.134.30
+publicIP=52.170.43.127
 
 sudo kubeadm init --control-plane-endpoint $publicIP --apiserver-advertise-address $ip_address --pod-network-cidr=$cidr --upload-certs
 

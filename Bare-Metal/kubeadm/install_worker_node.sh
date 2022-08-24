@@ -21,6 +21,8 @@ echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key add -
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
 
+exit
+
 sudo apt update -y
 sudo apt install cri-o cri-o-runc -y
 
