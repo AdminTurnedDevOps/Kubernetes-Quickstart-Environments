@@ -8,9 +8,9 @@ sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-sudo su -
-
 sudo apt update -y 
+
+sudo su -
 
 # Install and configure the CRI-O container runtime
 OS=xUbuntu_20.04
@@ -21,6 +21,8 @@ echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:
 
 curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key add -
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
+
+exit
 
 sudo apt update -y
 sudo apt install cri-o cri-o-runc -y
@@ -49,4 +51,4 @@ sudo sysctl --system
 # Install and configure Kubeadm
 sudo apt-get install -y kubelet kubeadm kubectl
 
-apt-mark hold kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl

@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/michael/gitrepos/Kubernetes-Quickstart-Environments'
+make: Leaving directory `/Users/michael/gitrepos/Kubernetes-Quickstart-Environments'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
