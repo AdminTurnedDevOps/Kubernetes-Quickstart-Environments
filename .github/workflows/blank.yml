@@ -1,0 +1,40 @@
+name: GKE Kubernetes Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Set up gcloud Cloud SDK environment
+        uses: google-github-actions/setup-gcloud@v0.6.0
+        with:
+          service_account_email:
+          service_account_key:
+          project_id:
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        working-directory: where_the_gke_code_lives
+        run: terraform init
+        
+      - name: Terraform Format
+        working-directory: where_the_gke_code_lives
+        run: terraform fmt
+
+      - name: Terraform Plan
+        working-directory: where_the_gke_code_lives
+        run: terraform plan
+
+      - name: Terraform Apply
+        working-directory: where_the_gke_code_lives
+        run: terraform apply -auto-approve
