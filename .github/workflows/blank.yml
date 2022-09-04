@@ -20,9 +20,6 @@ jobs:
           service_account_key:
           project_id:
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-
       - name: Terraform Init
         working-directory: where_the_gke_code_lives
         run: terraform init
