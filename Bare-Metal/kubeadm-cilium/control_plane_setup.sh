@@ -15,11 +15,11 @@ Depending on where you are deploying, you could either have just a public subnet
 If you have just a public subnet, use the same value for the ip_address and publicIP, along with the CIDR range
 If you have a private and public subnet, use the public IP for the publicIP, the private IP for the ip_address, and the private IP range for the CIDR
 #######
-ip_address=172.17.0.4
+ip_address=192.168.1.61
 cidr=172.17.0.0/16
-publicIP=40.117.168.164
+publicIP=192.168.1.61
 
-sudo kubeadm init --control-plane-endpoint $publicIP --apiserver-advertise-address $ip_address --pod-network-cidr=$cidr --upload-certs
+sudo kubeadm init --skip-phases=addon/kube-proxy --control-plane-endpoint $publicIP --apiserver-advertise-address $ip_address --pod-network-cidr=$cidr --upload-certs
 
 #######
 
@@ -37,7 +37,16 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-# Networking: Weave
-# If you don't want to use Weave, you can see the network frameworks listed here: https://kubernetes.io/docs/concepts/cluster-administration/addons/
-export kubever=$(kubectl version | base64 | tr -d '\n')
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+## Install Helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+## Install Cilium
+helm repo add cilium https://helm.cilium.io/
+
+helm install cilium cilium/cilium \
+    --namespace kube-system \
+    --set kubeProxyReplacement=strict \
+    --set k8sServiceHost=192.168.1.61 \
+    --set k8sServicePort=6443

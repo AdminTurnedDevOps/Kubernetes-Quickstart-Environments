@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Wed Aug 24 11:55:04 2022
+# Make data base, printed on Wed Aug 24 13:51:01 2022
 
 # Variables
 
@@ -33,7 +33,6 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/make
 # environment
- 
 sonobuoy = /Users/michael/sonobuoyapp/sonobuoy
 # makefile
 MAKEFILE_LIST := 
@@ -145,6 +144,7 @@ LC_ALL = C
 SUFFIXES := 
 # default
 .INCLUDE_DIRS = /usr/local/include
+ 
 # environment
 MAKELEVEL := 0
 # environment
@@ -234,6 +234,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed Aug 24 11:55:04 2022
+# Finished Make data base on Wed Aug 24 13:51:01 2022
 
  
