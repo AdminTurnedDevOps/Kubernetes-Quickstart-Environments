@@ -16,10 +16,6 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
   location            = var.location
   resource_group_name = var.resource_group_name
   dns_prefix          = "${var.name}-dns01"
-  network_profile {
-  network_plugin = "azure"
-  network_policy = "azure"
-}
 
   default_node_pool {
     name       = "default"
@@ -29,6 +25,11 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
 
   identity {
     type = "SystemAssigned"
+  }
+
+  azure_active_directory_role_based_access_control {
+    managed = true
+    azure_rbac_enabled     = true
   }
 
   tags = {

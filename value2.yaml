@@ -1,0 +1,8 @@
+--- 
+global: 
+  authentication: 
+    adminPassword: "zerto"
+    adminUser: "zerto"
+    imagePullSecret: "Y2JkYmVlYTQtMGNkMS00OTNkLWFmOTktNmNiYzYxOGVjZDEwOlRaRDZFSFpYamc1YU13aExDZDlBQklBb0lkQXJHRUtUcWdYY1cwVTc="
+    managementPassword: "zerto"
+    managementUser: "zerto"
