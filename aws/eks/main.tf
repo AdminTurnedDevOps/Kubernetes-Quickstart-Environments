@@ -102,6 +102,10 @@ resource "aws_iam_role_policy_attachment" "CloudWatchAgentServerPolicy-eks" {
   role       = aws_iam_role.workernodes.name
 }
 
+resource "aws_iam_role_policy_attachment" "AmazonEBSCSIDriverPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  role       = aws_iam_role.workernodes.name
+}
 resource "aws_eks_node_group" "worker-node-group" {
   cluster_name    = aws_eks_cluster.k8squickstart-eks.name
   node_group_name = "k8squickstart-workernodes"
@@ -120,4 +124,9 @@ resource "aws_eks_node_group" "worker-node-group" {
     aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
     #aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
   ]
+}
+
+resource "aws_eks_addon" "csi" {
+  cluster_name = aws_eks_cluster.k8squickstart-eks.name
+  addon_name   = "aws-ebs-csi-driver"
 }
