@@ -48,7 +48,14 @@ EOF
 
 sudo sysctl --system
 
-# Install and configure Kubeadm
+# Install and configure Kubeadm with the latest version of Kubernetes.
 sudo apt-get install -y kubelet kubeadm kubectl
+
+# To install a specific version of Kubernetes (not the latest), you can use the following...
+# Example: sudo apt-get install -qy kubelet=1.25.5-00 kubectl=1.25.5-00 kubeadm=1.25.5-00
+
+# You can see all Kubernetes versions available for Kubeadm like this: `apt list -a kubeadm`
+
+sudo apt-get install -qy kubelet=<version> kubectl=<version> kubeadm=<version>
 
 sudo apt-mark hold kubelet kubeadm kubectl

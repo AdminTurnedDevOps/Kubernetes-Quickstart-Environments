@@ -15,5 +15,5 @@ variable "location" {
 
 variable "node_count" {
   type = string
-  default = 1
+  default = 3
 }
