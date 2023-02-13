@@ -8,6 +8,11 @@ variable "region" {
   default = "us-east1"
 }
 
+variable "machine_type" {
+  type = string
+  default = "e2-small"
+}
+
 variable "vpc_name" {
   type = string
   default = "default"
@@ -25,5 +30,5 @@ variable "node_count" {
 
 variable "cluster_name" {
   type = string
-  default = "gkek8senv"
+  default = "anthosgke"
 }

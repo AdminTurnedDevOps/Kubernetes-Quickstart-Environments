@@ -1,20 +1,21 @@
 terraform {
   required_providers {
     google-beta = {
-      source = "hashicorp/google-beta"
+      source  = "hashicorp/google-beta"
       version = ">= 3.67.0"
     }
   }
 }
 
-provider "google-beta" {
-  project = var.project_id
+provider "google" {
+  project     = var.project_id
+  region      = var.region
 }
 
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.region
-  
+
   remove_default_node_pool = true
   initial_node_count       = 1
 
@@ -38,7 +39,9 @@ resource "google_container_node_pool" "nodes" {
       env = var.project_id
     }
 
-    machine_type = "n1-standard-1"
+    disk_size_gb = 50
+
+    machine_type = var.machine_type
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
@@ -47,20 +50,12 @@ resource "google_container_node_pool" "nodes" {
 }
 
 resource "google_gke_hub_membership" "anthos_registration" {
-  provider = google-beta
-  project_id = var.project_id
-  membership_id = "${var.clustername}-fleet"
+  provider      = google-beta
+  project = var.project_id
+  membership_id = "${var.cluster_name}-fleet"
   endpoint {
     gke_cluster {
-     resource_link = "${container.googleapis.com/google_container_cluster.primary.id}"
+      resource_link = "//container.googleapis.com/${google_container_cluster.primary.id}"
     }
   }
-}
-
-workload_identity_config {
-  identity_namespace = "${var.project_id.svc.id.goog}"
-}
-
-authority {
-  issuer = "${https://container.googleapis.com/v1/google_container_cluster.primary.id}"
 }
