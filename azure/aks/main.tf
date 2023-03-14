@@ -16,6 +16,8 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
   location            = var.location
   resource_group_name = var.resource_group_name
   dns_prefix          = "${var.name}-dns01"
+
+  kubernetes_version = var.k8s_version
   network_profile {
   network_plugin = "azure"
   network_policy = "azure"

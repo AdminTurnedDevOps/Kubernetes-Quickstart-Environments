@@ -8,6 +8,11 @@ variable "subnet_id_2" {
   default = "subnet-081d97174d250cffd"
 }
 
+variable "AMI" {
+  type = string
+  default = "BOTTLEROCKET_x86_64"
+}
+
 variable "desired_size" {
   type = string
   default = 1
