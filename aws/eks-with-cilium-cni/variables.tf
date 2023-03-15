@@ -10,9 +10,9 @@ variable "subnet_id_2" {
 
 variable "desired_size" {
   type = string
-  default = 3
+  default = 1
 }
 variable "min_size" {
   type = string
-  default = 3
+  default = 1
 }
