@@ -32,3 +32,8 @@ variable "cluster_name" {
   type = string
   default = "gkek8senv"
 }
+
+variable "k8s_version" {
+  type = string
+  defualt = "1.26.1-gke.1500"
+}

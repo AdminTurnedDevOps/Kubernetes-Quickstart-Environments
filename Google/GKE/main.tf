@@ -11,6 +11,8 @@ resource "google_container_cluster" "primary" {
 
   network    = var.vpc_name
   subnetwork = var.subnet_name
+
+  min_master_version = var.k8s_version
 }
 
 resource "google_container_node_pool" "nodes" {
