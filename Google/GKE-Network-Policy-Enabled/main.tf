@@ -11,6 +11,11 @@ resource "google_container_cluster" "primary" {
 
   network    = var.vpc_name
   subnetwork = var.subnet_name
+
+  network_policy {
+    provider = "CALICO"
+    enabled = true
+  }
 }
 
 resource "google_container_node_pool" "nodes" {
