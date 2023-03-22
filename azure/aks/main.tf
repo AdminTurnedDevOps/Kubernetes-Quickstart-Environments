@@ -2,7 +2,6 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.0"
     }
   }
 }
@@ -18,6 +17,8 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
   dns_prefix          = "${var.name}-dns01"
 
   kubernetes_version = var.k8s_version
+
+  
   network_profile {
   network_plugin = "azure"
   network_policy = "azure"
@@ -27,6 +28,7 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
     name       = "default"
     node_count = var.node_count
     vm_size    = "Standard_A2_v2"
+    
   }
 
   identity {
