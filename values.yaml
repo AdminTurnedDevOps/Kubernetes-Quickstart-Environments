@@ -1,11 +1,7 @@
-global:
-  imagePullSecret: "Y2JkYmVlYTQtMGNkMS00OTNkLWFmOTktNmNiYzYxOGVjZDEwOlRaRDZFSFpYamc1YU13aExDZDlBQklBb0lkQXJHRUtUcWdYY1cwVTc="
-  authentication:
-    adminUser: "zerto"
-    adminPassword: "zerto"
-    managementUser: "zerto"
-    managementPassword: "zerto"
-
-zkm-px:
-  config:
-    siteId: "gke_site1"
+clusterName: aks
+stormforge:
+  address: https://api.stormforge.io/
+authorization:
+  issuer: https://api.stormforge.io/
+  clientID: 4aebf64a4c8e405f8950f80bd083d8d2
+  clientSecret: _v08_zz.EPr1VQmBN_df2GmXGJ

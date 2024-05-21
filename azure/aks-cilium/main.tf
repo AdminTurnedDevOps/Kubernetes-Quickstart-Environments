@@ -19,8 +19,7 @@ resource "azurerm_kubernetes_cluster" "k8squickstart" {
 
   network_profile {
   network_plugin = "azure"
-  network_plugin_mode = "Overlay"
-  ebpf_data_plane = "cilium"
+  network_policy = "cilium"
 }
 
   default_node_pool {

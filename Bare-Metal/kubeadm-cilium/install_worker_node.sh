@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo apt update -y
 
 # Install transport layer

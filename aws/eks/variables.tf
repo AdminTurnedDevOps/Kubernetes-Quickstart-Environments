@@ -16,3 +16,8 @@ variable "min_size" {
   type = string
   default = 3
 }
+
+variable "k8sVersion" {
+  default = "1.28"
+  type = string
+}
