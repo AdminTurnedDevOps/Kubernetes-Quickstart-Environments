@@ -4,16 +4,18 @@ sudo apt update -y
 # Install transport layer
 sudo apt-get install -y apt-transport-https curl
 
-# Install Kubernetes package on Ubuntu
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+# Add Kubernetes Signing Key
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+# Add Software Repositories
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 sudo apt update -y 
 
 sudo su -
 
 # Install and configure the CRI-O container runtime
-OS=xUbuntu_20.04
+OS=xUbuntu_22.04
 VERSION=1.22
 
 echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
@@ -34,7 +36,7 @@ sudo systemctl enable crio --now
 apt-cache policy cri-o
 
 # Turn off swap
-swapoff -a
+sudo swapoff -a
 
 # sysctl settings and ip tables
 sudo modprobe overlay
