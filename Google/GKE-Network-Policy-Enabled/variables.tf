@@ -10,7 +10,7 @@ variable "region" {
 
 variable "machine_type" {
   type = string
-  default = "e2-small"
+  default = "e2-standard-4"
 }
 
 variable "vpc_name" {
@@ -35,5 +35,5 @@ variable "cluster_name" {
 
 variable "k8s_version" {
   type = string
-  default = "1.25.6-gke.1000"
+  default = "1.29.4-gke.1043002"
 }

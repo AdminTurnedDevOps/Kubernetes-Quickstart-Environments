@@ -111,7 +111,7 @@ resource "aws_eks_node_group" "worker-node-group" {
   node_group_name = "k8squickstart-workernodes"
   node_role_arn   = aws_iam_role.workernodes.arn
   subnet_ids      = [var.subnet_id_1, var.subnet_id_2]
-  instance_types = ["t3.xlarge"]
+  instance_types = ["t3.2xlarge"]
 
   scaling_config {
     desired_size = var.desired_size
