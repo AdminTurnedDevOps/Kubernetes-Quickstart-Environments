@@ -1,1 +1,1 @@
-aws eks update-kubeconfig --region us-east-1 --name k8squickstart-cluster
+aws eks --region us-east-1 update-kubeconfig --name k8squickstart-cluster
