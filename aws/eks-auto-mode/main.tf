@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "terraform-state-k8senv"
-    key    = "eks-terraform-automode.tfstate"
+    key    = "eks-terraform-automode1.tfstate"
     region = "us-east-1"
   }
   required_providers {
@@ -35,15 +35,12 @@ EOF
 
 }
 
-## Recommended Policies For EKS Auto Mode
+## Recommended Policies For EKS Auto Mode Control Plane
 resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.eks-iam-role.name
 }
-resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly-EKS" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = aws_iam_role.eks-iam-role.name
-}
+
 resource "aws_iam_role_policy_attachment" "AmazonEKSBlockStoragePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy"
   role       = aws_iam_role.eks-iam-role.name
@@ -61,12 +58,38 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSNetworkingPolicy" {
   role       = aws_iam_role.eks-iam-role.name
 }
 
+## EKS Worker Node Policies For Auto Mode
+resource "aws_iam_role" "workernodes" {
+  name = "eks-node-group-example"
+
+  assume_role_policy = jsonencode({
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+    Version = "2012-10-17"
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodeMinimalPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy"
+  role       = aws_iam_role.workernodes.name
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryPullOnly" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly"
+  role       = aws_iam_role.workernodes.name
+}
+
 ## Create the EKS cluster
 resource "aws_eks_cluster" "k8squickstart-eks" {
   name     = "k8squickstart-cluster"
   role_arn = aws_iam_role.eks-iam-role.arn
 
-  enabled_cluster_log_types = ["api", "audit", "scheduler", "controllerManager"]
+#   enabled_cluster_log_types = ["api", "audit", "scheduler", "controllerManager"]
   version                   = var.k8sVersion
 
   access_config {
@@ -79,8 +102,8 @@ resource "aws_eks_cluster" "k8squickstart-eks" {
 
   compute_config {
     enabled       = true
-    node_pools    = ["general-purpose"]
-    node_role_arn = aws_iam_role.eks-iam-role.arn
+    node_pools    = ["general-purpose", "system"]
+    node_role_arn = aws_iam_role.workernodes.arn
   }
 
   kubernetes_network_config {
@@ -102,51 +125,8 @@ resource "aws_eks_cluster" "k8squickstart-eks" {
   ]
 }
 
-# ## Worker Nodes
-# resource "aws_iam_role" "workernodes" {
-#   name = "eks-node-group-example"
+# # ## Worker Nodes
 
-#   assume_role_policy = jsonencode({
-#     Statement = [{
-#       Action = "sts:AssumeRole"
-#       Effect = "Allow"
-#       Principal = {
-#         Service = "ec2.amazonaws.com"
-#       }
-#     }]
-#     Version = "2012-10-17"
-#   })
-# }
-
-# resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-#   role       = aws_iam_role.workernodes.name
-# }
-
-# resource "aws_iam_role_policy_attachment" "AmazonEKS_CNI_Policy" {
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-#   role       = aws_iam_role.workernodes.name
-# }
-
-# resource "aws_iam_role_policy_attachment" "EC2InstanceProfileForImageBuilderECRContainerBuilds" {
-#   policy_arn = "arn:aws:iam::aws:policy/EC2InstanceProfileForImageBuilderECRContainerBuilds"
-#   role       = aws_iam_role.workernodes.name
-# }
-
-# resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-#   role       = aws_iam_role.workernodes.name
-# }
-
-# resource "aws_iam_role_policy_attachment" "CloudWatchAgentServerPolicy-eks" {
-#   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
-#   role       = aws_iam_role.workernodes.name
-# }
-
-# resource "aws_iam_role_policy_attachment" "AmazonEBSCSIDriverPolicy" {
-#   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-#   role       = aws_iam_role.workernodes.name
-# }
 
 # resource "aws_eks_node_group" "worker-node-group" {
 #   cluster_name    = aws_eks_cluster.k8squickstart-eks.name
